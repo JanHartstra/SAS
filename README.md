@@ -1,14 +1,14 @@
 # SAS
 SAS programs and templates
 
-##Introduction
+## Introduction
 
 The repository is created for 2 purposes:
 1. Learning how to work with GitHub
 1. Create a repository of SAS code snippets that can be used to buils SAS programs
 
-##Snippets
+## Snippets
 
-###proc means
+### proc means
 
 This is a basic framework for the SAS means procedure.
