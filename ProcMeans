@@ -1,0 +1,7 @@
+proc means data=_last_ noprint;
+   by &by;
+   *class &by;
+   var &var;
+   output out=&out n=n mean=mean std=SD stderr=SE median=median min=min max=max;
+run;
+  
