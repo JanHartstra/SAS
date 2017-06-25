@@ -3,12 +3,16 @@
                   ,by      =
                   ,var     =
                   ,out     =);
-                 
+
+   %put Macro &sysmacroname started.;
+   %local __stdt;
+   %let __stdt=%sysfunc(datetime());
+
    date __work1;
       set &data;
       %if %length(&where) %then %str(where &where;);
    run;
-   
-   %put ;
-                  
+
+   %macro_end:
+   %put Macro &sysmacroname finished in %sysfunc(putn(%sysevalf(%sysfunc(datetime()) - &__stdt), tod.));   
 %mend macro_name;
