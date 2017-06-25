@@ -1,0 +1,14 @@
+%macro macro_name (data    =
+                  ,where   =
+                  ,by      =
+                  ,var     =
+                  ,out     =);
+                 
+   date __work1;
+      set &data;
+      %if %length(&where) %then %str(where &where;);
+   run;
+   
+   %put ;
+                  
+%mend macro_name;
