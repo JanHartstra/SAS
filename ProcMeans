@@ -1,11 +1,15 @@
-%let var=;
-%let by=;
+**Define some macro variabes for illustration purposes.**;
+%let var=;  **The variable for which desciptive statistics need to be calculated.**;
+%let by=;   **By group variables.**;
+&let out=;  **Name of the output dataset containing the statistics.**;
 
 data work1;
    set _last_;
+   **Log-transformation for geometric variables.**;
    if &var>0 then lg&var=log(&var);
 run;
 
+**Use proc means to calculate the descriptive statisitcs.**;
 proc means data=_last_ noprint;
    by &by;
    *class &by;
@@ -17,6 +21,15 @@ proc means data=_last_ noprint;
                    median(&var)=median
                    min(&var)   =min 
                    max(&var)   =max
-                   mean(lg&var)=lgmean;
+                   mean(lg&var)=lgmean
+                   std(lg&var) =lgSD
+                   ;
 run;
   
+data &out;
+   set &out;
+   **Back transformations.**;
+   gmean=exp(lgmean);       **Geometric mean.**;
+   gSD=exp(lnSD);           **Geometric SD.**;
+   gCV=sqrt(exp(lnSD)^2-1); **Geometric CV.**;
+run;
