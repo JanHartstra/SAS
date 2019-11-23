@@ -1,7 +1,22 @@
+%let var=;
+%let by=;
+
+data work1;
+   set _last_;
+   if &var>0 then lg&var=log(&var);
+run;
+
 proc means data=_last_ noprint;
    by &by;
    *class &by;
-   var &var;
-   output out=&out n=n mean=mean std=SD stderr=SE median=median min=min max=max;
+   var &var lg&var;
+   output out=&out n(&var)     =n 
+                   mean(&var)  =mean 
+                   std(&var)   =SD 
+                   stderr(&var)=SE 
+                   median(&var)=median
+                   min(&var)   =min 
+                   max(&var)   =max
+                   mean(lg&var)=lgmean;
 run;
   
