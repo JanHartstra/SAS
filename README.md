@@ -12,3 +12,7 @@ The repository is created for 2 purposes:
 ### proc means
 
 This is a basic framework for the SAS means procedure.
+
+### proc mixed
+
+This is the basic framework for the SAS proc mixed for a bioequivalence type analysis
