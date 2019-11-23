@@ -1,0 +1,7 @@
+proc mixed data=&data;
+   by &by
+   class trt trtseq aperiod;
+   model lgaval=trta aperiod trtseq;
+   random subjid(trt);
+   estimate ;
+run;
